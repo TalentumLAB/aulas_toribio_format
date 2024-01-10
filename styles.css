@@ -1,0 +1,997 @@
+/*
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * format_aulas_toribio_renderer
+ *
+ * @package    format_aulas_toribio
+ * @author     Rodrigo Brandão <rodrigo_brandao@me.com>
+ * @copyright  2018 Rodrigo Brandão
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+ /** moodle styles modified*/
+/* .format-aulas_toribio .courseindex>div:nth-child(2){
+    display: none;
+} */
+/*
+* Scroll bar
+*/
+body::-webkit-scrollbar {
+  width: 12px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #6a737b;
+  border-radius: 20px;
+  border: 3px solid #f8f9fa;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #495057;
+}
+ .dropdown-menu.show{
+  z-index: 99999;
+ }
+.activity-information{
+  min-width: 15%;
+}
+#page-course-view-aulas_toribio .activity-info .activity-information button{
+  font-family: 'poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.8rem !important;
+  color: #191919 !important;
+  margin: 0;
+  padding: 7px 25px;
+  text-decoration: none;
+  border-radius: 30px;
+  background: #F8F8F8;
+  /* shades/cards-shadow */
+  box-shadow: 0px 1.5315827131271362px 10.721078872680664px 0px rgba(0, 0, 0, 0.25);
+}
+#page-course-view-aulas_toribio .activity-info .activity-information button.btn-success{
+  background-color: #357a32;
+  color: #fff !important;
+}
+.activity-information button.btn-outline-success{
+  background: #1A9C46;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: none;
+}
+.activity-information button.btn-outline-success i{
+  color: #fff;
+}
+.automatic-completion-conditions .badge{
+  margin-right: 0.2rem;
+}
+.activity-item .activity-information  .automatic-completion-conditions{
+  align-items: flex-start !important;
+}
+.aulas_toribio-editing .activity-item{
+  padding: 0 !important;
+  overflow: visible;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.aulas_toribio-no-editing {
+  /* background-image: url('../../../../course/format/aulas_toribio/img/back-course.png'); */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.aulas_toribio-no-editing .activity-item{
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+  max-width: 100%;
+  /* border: 1px solid #42AD5D !important; */
+  /* border-radius: 15px */
+}
+.activityiconcontainer{
+  border-radius: 50% !important;
+}
+.aulas_toribio-no-editing .activityiconcontainer{
+  width: 30px !important;
+  height: 30px !important;
+}
+.aulas_toribio-no-editing .activityiconcontainer .activityicon{
+  height: 16px !important;
+  width: 16px !important;
+}
+.aulas_toribio-no-editing .activity-basis, 
+.aulas_toribio-editing .activity-basis{
+  padding: 0.8rem 0.5rem;
+}
+.aulas_toribio-editing .editing-modules>div{
+  display:none !important;
+}
+.aulas_toribio-editing .editing-modules>ul{
+width: 100%;
+}
+.aulas_toribio-no-editing .activity-basis>div, 
+.aulas_toribio-editing .activity-basis>div{
+  flex-wrap: wrap;
+  align-items: center;
+}
+.aulas_toribio-no-editing .activity-basis .media-body .text-uppercase,
+.aulas_toribio-editing .activity-basis .media-body .text-uppercase{
+  display:none;
+}
+.aulas_toribio-no-editing .activity-basis .media-body .activityname,
+.aulas_toribio-editing .activity-basis .media-body .activityname{
+  line-height: 1.2;
+}
+.aulas_toribio-no-editing .activity-basis .media-body .activityname a,
+.aulas_toribio-editing .activity-basis .media-body .activityname a{
+  font-size: 1rem;
+  color: #000;
+  font-weight: 600;
+}
+.aulas_toribio-no-editing .activity-basis .media-body .activityname a{
+  font-size: 1.2rem;
+  color: #191919;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+.aulas_toribio-no-editing .section .activity{
+  max-width: 100%;
+  min-width: 30%;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.aulas_toribio-no-editing .section .activity .activity-dates{
+  display: none;
+}
+@media screen and (max-width:768px) {
+  .aulas_toribio-no-editing .section .activity{
+    max-width: 45%;
+    min-width: 45%;
+  }
+}
+@media screen and (max-width: 540px){
+  .aulas_toribio-no-editing .section .activity {
+      max-width: 100%;
+      min-width: 100%;
+  }
+}
+/* #courseindex-content>div .courseindex-section:nth-child(2){
+  display: none;
+} */
+
+.automatic-completion-conditions .badge{
+  white-space: normal;
+}
+
+ /** end moodle styles modified*/
+
+ .course-content ul.buttons li.section.main {
+  background: none;
+  list-style: none;
+  display: none;
+  border:none;
+}
+
+.course-content ul.buttons span.above li.section {
+  border: 0;
+  display: block;
+  margin-bottom: 30px;
+  padding-bottom: 0;
+}
+
+.course-content ul.buttons span.below li.section {
+  border: 0;
+  display: block;
+  margin-top: 35px;
+}
+
+.course-content ul.buttons .content ul.section {
+  margin: 1em 0;
+}
+
+#aulas_toribio-container-section {
+  display: none;
+}
+
+#aulas_toribio-container-section .buttonsection-aulas_toribio {
+  border: 1px solid #ccc;
+  background: white;
+  width: 100%;
+  color: #7a8188;
+  display: inline-block;
+  text-align: center;
+  line-height: 52px;
+  height: 52px;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 0;
+  font-weight: 700;
+  margin: 0;
+  vertical-align: top;
+  box-shadow: 5px 4px 6px #e0dfdf;
+  font-weight: 100;
+}
+
+#aulas_toribio-container-section.circle .buttonsection-aulas_toribio {
+  border-radius: 100%;
+}
+
+#aulas_toribio-container-section .buttonsection-aulas_toribio:hover {
+  background: #313131;
+  color: #fff;
+  border-color: #ff0019;
+}
+
+#aulas_toribio-container-section .buttonsection-aulas_toribio.sectionhidden {
+  width: 53px;
+  height: 53px;
+  line-height: 50px;
+  border: 2px solid;
+  background: none;
+  cursor: default;
+  color: #b7bdc3;
+  border-color: #d3d9df;
+}
+
+#aulas_toribio-container-section .divisorsection {
+  display: inline-block;
+  padding: 0;
+  overflow-y: hidden;
+  height: 52px;
+  margin: 0 4px 10px 25px;
+}
+
+#aulas_toribio-container-section .divisortext {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  overflow-y: hidden;
+  height: 52px;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* colors */
+
+#aulas_toribio-container-section .buttonsection-aulas_toribio.current {
+  background: #115898;
+  color: #fff;
+}
+
+#aulas_toribio-container-section .buttonsection-aulas_toribio.sectionvisible {
+  background: #313131;
+  color: #fff;
+  border-color: #ff0019;
+}
+
+#aulas_toribio-container-section .divisorsection.inlinebuttonsections {
+  display: inline;
+}
+
+#aulas_toribio-container-section .divisorsection.inlinebuttonsections::before {
+  content: "\A";
+  white-space: pre;
+}
+
+/* editing */
+
+.editing .course-content ul.buttons li.section.main {
+  display: block;
+}
+
+.aulas_toribio-container-cards {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.aulas_toribio-module-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+
+.aulas_toribio-card-img {
+  max-width: 350px;
+  min-width: 150px;
+}
+
+/* .aulas_toribio-back-navbar {
+  margin-bottom: 1rem;
+} */
+.aulas_toribio-back-navbar .aulas_toribio-back-nav{
+  border-radius: 4px !important;
+  border: none !important;
+  padding: 0.6rem 1.5rem !important;
+  color: #000 !important;
+  font-family: 'poppins';
+}
+.aulas_toribio-back-navbar .aulas_toribio-back-nav:hover{
+  cursor: pointer;
+}
+.aulas_toribio-back-nav i{
+  margin-right: 1rem;
+}
+
+.aulas_toribio-editing .section .img-text{
+  display: block;
+}
+.aulas_toribio-editing .section .activity{
+  max-width: 100%;
+}
+.aulas_toribio-editing .section li.activity.hasinfo{
+    border-bottom: none;
+    padding: 0;
+    padding-top: 0rem!important;
+    overflow: initial;
+    width: 100%;
+    height: auto;
+    border: none;
+    margin-left: 0;
+    border-radius: 0;
+    display: block;
+}
+.aulas_toribio-editing  .section li.activity.hasinfo:hover{
+  box-shadow: none;
+}
+
+.aulas_toribio-editing .section li.activity.hasinfo .mod-indent-outer div:last-child{
+  display: block;
+  padding: 0;
+}
+.aulas_toribio-editing .section li.activity.hasinfo .mod-indent-outer div:last-child.dropdown-menu{
+  display: none;
+}
+.dropdown-menu.show{
+  display: block !important;
+}
+
+.aulas_toribio-editing .section .activity .contentwithoutlink, .section .activity .activityinstance{
+  width: auto;
+  margin-top: 0;
+}
+
+.aulas_toribio-editing .section li.activity.hasinfo  .activity-information button.btn-outline-success i{
+  margin-bottom: 0.5rem;
+}
+
+.video-tabs iframe{
+  width: 100%;
+  min-height: 300px;
+  margin-top: 1rem;
+}
+
+
+/*cards news*/
+/*aulas_toribio card modules new*/
+
+.card-deck {
+  margin:1em auto;
+  }
+  /* #aulas_toribio-button-section-1{
+    background-color: #CE9618;
+  }
+  #aulas_toribio-button-section-1:after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: -5px;
+    left: -5px;
+    background: #CE9618;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.7s ease-out;
+  }
+  #aulas_toribio-button-section-1:hover:after {
+    background: #0D7839;
+    transform: scale(28);
+  } */
+  /* .aulas_toribio-after-class-1:after{
+    background: #0D7839 !important;
+    transform: scale(28)  !important;
+  }
+  #aulas_toribio-button-section-2{
+    background-color: #C21A16;
+  }
+  #aulas_toribio-button-section-2:after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: -5px;
+    left: -5px;
+    background: #C21A16;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.7s ease-out;
+  }
+  #aulas_toribio-button-section-2:hover:after {
+    background: #194866;
+    transform: scale(28);
+  }
+  .aulas_toribio-after-class-2:after{
+    background: #194866 !important;
+    transform: scale(28)  !important;
+  }
+  #aulas_toribio-button-section-3{
+    background-color: #066265;
+  }
+  #aulas_toribio-button-section-3:after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: -5px;
+    left: -5px;
+    background: #066265;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.7s ease-out;
+  }
+  #aulas_toribio-button-section-3:hover:after {
+    background: #532C85;
+    transform: scale(28);
+  }
+  .aulas_toribio-after-class-3:after{
+    background: #532C85 !important;
+    transform: scale(28)  !important;
+  }
+  #aulas_toribio-button-section-4{
+    background-color: #0D7839;
+  }
+  #aulas_toribio-button-section-4:after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: -5px;
+    left: -5px;
+    background: #0D7839;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.7s ease-out;
+  }
+  #aulas_toribio-button-section-4:hover:after {
+    background: #AB1E1A;
+    transform: scale(28);
+  }
+  .aulas_toribio-after-class-4:after{
+    background: #AB1E1A !important;
+    transform: scale(28)  !important;
+  } */
+  .card.aulas_toribio-card-module {
+      min-width: 340px;
+      border-radius: 15px;
+      margin:1rem auto;
+      padding: 0px !important;
+      overflow: hidden;
+      /* min-height: 300px;
+      max-height: 300px; */
+      max-width: 340px;
+      margin-right: 0;
+      background: #F9FAFD;
+      box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+  }
+  .aulas_toribio-module-images-dashboard{
+    position: absolute !important;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .aulas_toribio-module-images-dashboard img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .aulas_toribio-module-images-dashboard img:hover{
+    cursor: pointer;
+  }
+  .card-footer.aulas_toribio-card-module-footer {
+      display: flex;
+      justify-content: flex-end;
+      background:#fff;
+      border-radius:20px;
+  }
+  .card-footer{
+  border-top: 0;
+  }
+  a.btn.btn-secondary.aulas_toribio-card-module-btn {
+      margin: 0;
+      min-width: 4rem;
+      padding: 0 0;
+  }
+  .card-body.aulas_toribio-card-module-body {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+  }
+  .card-body.aulas_toribio-card-module-body a {
+    z-index: 1;
+}
+  .card-body.aulas_toribio-card-module-body:hover {
+    cursor: pointer;
+  }
+  .card-body.aulas_toribio-card-module-body img{
+    width: 100%;
+    max-height: 180px;
+  }
+  
+  .card-title_aulas_toribio{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #000;
+    margin-bottom: 0rem!important;
+    padding: 1rem;
+  }
+  .aulas_toribio-title-dashboard{
+    margin-top: 4rem;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 20px;
+    /* font-family: 'poppins'; */
+    color: #000;
+  }
+  .aulas_toribio-title-modules{
+    font-weight: 700;
+    font-size: 36px;
+    color: #128F46;
+    font-family: 'poppins';
+  }
+  .aulas_toribio-subtitle-module{
+    font-weight: 400;
+    font-size: 18px;
+    font-family: 'poppins';
+  }
+  .card-text_aulas_toribio{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #1D1D1D;
+    margin-bottom: 0.2rem;
+    z-index: 1;
+    font-family: 'poppins';
+  }
+  a.btn.btn-secondary.aulas_toribio-card-module-btn{
+  color:#ae002d;
+  }
+  .aulas_toribio-card-module-btn:hover {
+      color: white;
+      text-decoration: none;
+  }
+  @media screen and (max-width:690px){
+  .card.aulas_toribio-card-module {
+      max-width: 12rem;
+      border-radius: 20px;
+       margin:1rem auto;
+  }
+  }
+  #charge{
+      width: 120px;
+      height: 120px;
+      display: block;
+      margin: 0 auto;
+  }
+  #section-0 .content #summary {
+      display:none !important;
+  }
+  #section-0 .content .section ul li .mod-indent-outer .activityinstance a img{
+      display:none !important;
+  }
+  #section-0 .content .section ul li .mod-indent-outer .activityinstance{
+      min-height: 0 !important;
+  }
+  .section .activity .activityinstance:hover{
+      color: #fff !important;
+      text-decoration:none;
+  }
+
+  /*LOADER*/
+  .lds-roller {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-roller div {
+      animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      transform-origin: 40px 40px;
+    }
+    .lds-roller div:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #AD002E;
+      margin: -4px 0 0 -4px;
+    }
+    .lds-roller div:nth-child(1) {
+      animation-delay: -0.036s;
+    }
+    .lds-roller div:nth-child(1):after {
+      top: 63px;
+      left: 63px;
+    }
+    .lds-roller div:nth-child(2) {
+      animation-delay: -0.072s;
+    }
+    .lds-roller div:nth-child(2):after {
+      top: 68px;
+      left: 56px;
+    }
+    .lds-roller div:nth-child(3) {
+      animation-delay: -0.108s;
+    }
+    .lds-roller div:nth-child(3):after {
+      top: 71px;
+      left: 48px;
+    }
+    .lds-roller div:nth-child(4) {
+      animation-delay: -0.144s;
+    }
+    .lds-roller div:nth-child(4):after {
+      top: 72px;
+      left: 40px;
+    }
+    .lds-roller div:nth-child(5) {
+      animation-delay: -0.18s;
+    }
+    .lds-roller div:nth-child(5):after {
+      top: 71px;
+      left: 32px;
+    }
+    .lds-roller div:nth-child(6) {
+      animation-delay: -0.216s;
+    }
+    .lds-roller div:nth-child(6):after {
+      top: 68px;
+      left: 24px;
+    }
+    .lds-roller div:nth-child(7) {
+      animation-delay: -0.252s;
+    }
+    .lds-roller div:nth-child(7):after {
+      top: 63px;
+      left: 17px;
+    }
+    .lds-roller div:nth-child(8) {
+      animation-delay: -0.288s;
+    }
+    .lds-roller div:nth-child(8):after {
+      top: 56px;
+      left: 12px;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    /*PROGRESS BAR*/
+    .progress {
+      display: flex;
+      height: .7rem !important;
+      overflow: hidden;
+      font-size: .75rem;
+      background-color: #f5f5f5;
+      border-radius: .25rem;
+      z-index: 1;
+  }
+  .progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #fff !important;
+    transition: width .6s ease;
+}
+.progress-bar-striped{
+  background: #D9D9D9;
+}
+.bg-success-bar {
+  /* background-color: #72b375 !important; */
+  background: linear-gradient(270deg, #25B34D 1.82%, rgba(130, 253, 164, 0.45) 100%);
+}
+.progress-bar-p{
+  margin: 0;
+  color: #2b134a;
+  font-size: 12px;
+  z-index: 1;
+}
+/* timeline activities*/
+.activities{
+  margin-top: 15px;
+}
+/* .activities:after{
+top: 100%;
+  content: '';
+  display: block;
+  position: absolute;
+  left: 1.3rem;
+  height: 1.3rem;
+  border-left: 1px solid grey;
+} */
+/* .section li:last-child .activities:after{
+    content: '';
+    border: none;
+  } */
+  .aulas_toribio-back-navbar #module-image-balboa{
+    display: none;
+  }
+  .aulas_toribio-back-navbar{
+    display: block;
+    box-shadow: none !important;
+    margin-bottom: 2rem;
+  }
+  .aulas_toribio-back-navbar .module-title{
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 20px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  #module-image-balboa{
+    max-height: 176px!important;
+    width: 190px;
+    margin: 0.5rem auto;
+  }
+  .aulas_toribio-no-editing .section .right.side,
+  .aulas_toribio-no-editing .section .sectionname{
+      display:none;
+  }
+  .aulas_toribio-no-editing .section .img-text{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 767.98px){
+    .aulas_toribio-no-editing .section .img-text{
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .aulas_toribio-no-editing .section li.activity.hasinfo{
+    border-bottom: 0 !important;
+    padding: 0rem 0rem 0.2rem;
+    padding-top: 0rem !important;
+    overflow: hidden;
+    width: 280px;
+    height: auto;
+    border: none;
+    margin-left: 0.2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    background: #fff;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  .aulas_toribio-no-editing .section li.activity.hasinfo:hover{
+    box-shadow: 0px 4px 12px rgb(52 130 174 / 37%);
+  }
+  .aulas_toribio-no-editing .section li.activity.hasinfo > div{
+    padding: 0;
+  }
+  .aulas_toribio-no-editing .section li.activity.hasinfo .mod-indent-outer{
+    padding-bottom: 1rem;
+    background-color: #fff;
+  }
+  .aulas_toribio-no-editing .mod-indent-outer div:last-child{
+    display: flex;
+    /* justify-content: flex-end; */
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .section .activity .contentwithoutlink>a, .section .activity .activityinstance>a{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #111111;
+    padding-left: 10px !important;
+  }
+  @media (max-width: 767.98px){
+    .section .activity .contentwithoutlink>a, .section .activity .activityinstance>a{
+      padding-left: 20px !important;
+    }
+  }
+  .section .activity .contentwithoutlink, .section .activity .activityinstance{
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+.formataulas_toribioiconlink{
+  display: flex !important;
+  text-indent: 0 !important;
+  padding-left: 0 !important;
+}
+
+.formataulas_toribioiconspan{
+  padding: 5px;
+}
+.section .activity .actions {
+  top: 40% !important;
+}
+
+.aulas_toribio-btn-start-modules{
+  padding: 6px 12px;
+  border: 1px solid #eab130;
+  background: #eab130;
+  border-radius: 5px;
+  width: fit-content;
+  color: #fff;
+  z-index: 1;
+  font-size: 16px;
+  font-family: 'poppins';
+}
+.aulas_toribio-btn-start-modules a{
+  color: #fff !important;
+}
+
+/*
+Cards moments
+*/
+.title-momentos h4{
+  color: #000;
+  font-family: 'poppins';
+  font-size: 30px;
+  font-weight: 500;
+  margin: 2rem 0;
+}
+.card-moment-content{
+  justify-content: space-evenly;
+}
+.card-moment{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card-moment .card-title_aulas_toribio{
+ padding: 0;
+}
+.card-moment:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+.card-moment:hover .card-title_aulas_toribio{
+  color:#094478;
+}
+#acivity-selecct-title{
+    color: #000;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    text-align: center !important;
+}
+
+/*Empatizar*/
+#card-empatizar[card="active"].card-momento-ative-empatizar .card{
+  padding: 0.3rem;
+  background: #eab130;
+  box-shadow: 0px 2px 14px 2px #eab130;
+}
+#card-empatizar[card="active"].card-momento-ative-empatizar .card .card-body{
+  border-bottom-left-radius: 10px;
+    background: #fff;
+    border-bottom-right-radius: 10px;
+    padding: 0.8rem;
+}
+
+/*definir*/
+#card-definir[card="active"].card-momento-ative-definir .card{
+  padding: 0.3rem;
+  background: #3c9747;
+  box-shadow: 0px 2px 14px 2px #3c9747;
+}
+#card-definir[card="active"].card-momento-ative-definir .card .card-body{
+  border-bottom-left-radius: 10px;
+  background: #fff;
+  border-bottom-right-radius: 10px;
+  padding: 0.8rem;
+}
+
+/*idear*/
+#card-idear[card="active"].card-momento-ative-idear .card{
+  padding: 0.3rem;
+  background: #17337a;
+  box-shadow: 0px 2px 14px 2px #17337a;
+}
+#card-idear[card="active"].card-momento-ative-idear .card .card-body{
+  border-bottom-left-radius: 10px;
+    background: #fff;
+    border-bottom-right-radius: 10px;
+    padding: 0.8rem;
+}
+
+/*prototipar*/
+#card-prototipar[card="active"].card-momento-ative-prototipar .card{
+  padding: 0.3rem;
+  background: #457af5;
+  box-shadow: 0px 2px 14px 2px #457af5;
+}
+#card-prototipar[card="active"].card-momento-ative-prototipar .card .card-body{
+  border-bottom-left-radius: 10px;
+    background: #fff;
+    border-bottom-right-radius: 10px;
+    padding: 0.8rem;
+}
+
+/*testear*/
+#card-testear[card="active"].card-momento-ative-testear .card{
+  padding: 0.3rem;
+  background: #296530;
+  box-shadow: 0px 2px 14px 2px #296530;
+}
+#card-testear[card="active"].card-momento-ative-testear .card .card-body{
+  border-bottom-left-radius: 10px;
+    background: #fff;
+    border-bottom-right-radius: 10px;
+    padding: 0.8rem;
+}
+
+/* Ventanas modales */
+
+.modal-btn-container{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: calc(100% - 30px);
+  display: flex;
+}
+.modal-btn-container .btn-modal-display{
+  height: 100%;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  flex: 1 auto;
+ }
+ .modal-btn-container .btn-modal-display:hover{
+  text-decoration: none;
+  background: rgba(255,255,255,0.1);
+  border-radius: 0;
+ }
