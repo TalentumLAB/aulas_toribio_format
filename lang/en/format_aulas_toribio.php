@@ -55,7 +55,7 @@ $string['doubtstext']  = 'Link of the button of doubts';
 $string['doubtstext_help']  = 'Place the link of the doubts button';
 $string['textselect']  = 'Link of the module video - {$a}';
 $string['textselect_help']  = 'Link of the module video - {$a} that you want to appear in the module {$a}';
-$string['pluginname'] = 'Aulas Toribio Format';
+$string['pluginname'] = 'Aulas Toribío Format';
 $string['currentsection'] = 'This topic';
 $string['editsection'] = 'Edit topic';
 $string['deletesection'] = 'Delete topic';
@@ -133,4 +133,4 @@ $string['back_guides'] = 'Back to courses';
 /**
  * Momentos
  */
-$string['title-moments'] = 'Choose a moment of Design Thinking to continue';
+$string['title-moments'] = 'Choose an activity to continue';

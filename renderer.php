@@ -879,12 +879,12 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         $contenttext .= html_writer::start_tag('div', ['class'=>'row w-100 card-moment-content']);
 
         /**
-         * Empatizar
+         * Inicio
          */
-        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-empatizar', 'role'=>'figure']);
-        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento empatizar','id'=>'arrow-image-empatizar', 'style'=>'display:none'));
+        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-inicio', 'role'=>'figure']);
+        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento empatizar','id'=>'arrow-image-inicio', 'style'=>'display:none'));
         $contenttext .= html_writer::start_tag('div', ['class'=>'card mt-3']);
-        if(file_exists(__DIR__.'/img/empatizar.svg')){
+        if(file_exists(__DIR__.'/img/inicio.svg')){
             if($section == 1){
                 $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',1)', 'role'=> 'button']);
             }else if($section == 2){
@@ -892,7 +892,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
             }else{
                 $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',1)', 'role'=> 'button']);
             }
-            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'empatizar.svg','class' => '', 'alt' => 'momento empatizar','id'=>'module-image-1'));
+            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'inicio.svg','class' => '', 'alt' => 'momento inicio','id'=>'module-image-1'));
             $contenttext .= html_writer::end_tag('a');
             
         }
@@ -905,19 +905,19 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
             $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',1)', 'role'=> 'button']);
         }
         
-        $contenttext .= html_writer::tag('h5','Empatizar', ['class'=>'card-title_aulas_toribio']);
-        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse al momento empatizar','id'=>'', ));
+        $contenttext .= html_writer::tag('h5','Actividades de inicio', ['class'=>'card-title_aulas_toribio']);
+        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse a las actividades de inicio','id'=>'', ));
         $contenttext .= html_writer::end_tag('a');
         $contenttext .= html_writer::end_tag('div');
         $contenttext .= html_writer::end_tag('div');
         $contenttext .= html_writer::end_tag('div');
         /**
-         * Definir
+         * Desarrollo
          */
-        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-definir', 'role'=>'figure']);
-        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento definir','id'=>'arrow-image-definir', 'style'=>'display:none'));
+        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-desarrollo', 'role'=>'figure']);
+        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento definir','id'=>'arrow-image-desarrollo', 'style'=>'display:none'));
         $contenttext .= html_writer::start_tag('div', ['class'=>'card mt-3']);
-        if(file_exists(__DIR__.'/img/definir.svg')){
+        if(file_exists(__DIR__.'/img/desarrollo.svg')){
             if($section == 1){
                 $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',2)', 'role'=> 'button']);
             }else if($section == 2){
@@ -925,7 +925,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
             }else{
                 $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',2)', 'role'=> 'button']);
             }
-            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'definir.svg','class' => '', 'alt' => 'momento definir','id'=>'module-image-1'));
+            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'desarrollo.svg','class' => '', 'alt' => 'momento desarrollo','id'=>'module-image-1'));
             $contenttext .= html_writer::end_tag('a');
         }
         $contenttext .= html_writer::start_tag('div', ['class'=>'card-body']);
@@ -936,19 +936,19 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         }else{
             $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',2)', 'role'=> 'button']);
         }
-        $contenttext .= html_writer::tag('h5','Definir', ['class'=>'card-title_aulas_toribio']);
-        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse al momento definir','id'=>'', ));
+        $contenttext .= html_writer::tag('h5','Actividades de desarrollo', ['class'=>'card-title_aulas_toribio']);
+        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse a las actividades de desarrollo','id'=>'', ));
         $contenttext .= html_writer::end_tag('a');
         $contenttext .= html_writer::end_tag('div');
         $contenttext .= html_writer::end_tag('div');
         $contenttext .= html_writer::end_tag('div');
         /**
-         * Idear
+         * Cierre
          */
-        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-idear', 'role'=>'figure']);
-        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '',  'alt' => 'indicacion de que se encuentra seleccionado el momento idear','id'=>'arrow-image-idear', 'style'=>'display:none'));
+        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-cierre', 'role'=>'figure']);
+        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '',  'alt' => 'indicacion de que se encuentra seleccionado el momento idear','id'=>'arrow-image-cierre', 'style'=>'display:none'));
         $contenttext .= html_writer::start_tag('div', ['class'=>'card mt-3']);
-        if(file_exists(__DIR__.'/img/idear.svg')){
+        if(file_exists(__DIR__.'/img/cierre.svg')){
             if($section == 1){
             $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',3)', 'role'=> 'button']);
         }else if($section == 2){
@@ -956,7 +956,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         }else{
             $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',3)', 'role'=> 'button']);
         }
-            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'idear.svg','class' => '', 'alt' => 'momento idear','id'=>'module-image-1'));
+            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'cierre.svg','class' => '', 'alt' => 'momento idear','id'=>'module-image-1'));
             $contenttext .= html_writer::end_tag('a');
         }
         $contenttext .= html_writer::start_tag('div', ['class'=>'card-body']);
@@ -967,8 +967,8 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         }else{
             $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',3)', 'role'=> 'button']);
         }
-        $contenttext .= html_writer::tag('h5','Idear', ['class'=>'card-title_aulas_toribio']);
-        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse al momento idear','id'=>'', ));
+        $contenttext .= html_writer::tag('h5','Actividades de cierre', ['class'=>'card-title_aulas_toribio']);
+        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse a las Actividades de cierre','id'=>'', ));
         $contenttext .= html_writer::end_tag('a');
         $contenttext .= html_writer::end_tag('div');
         $contenttext .= html_writer::end_tag('div');
@@ -976,65 +976,65 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         /**
          * Prototipar
          */
-        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-prototipar', 'role'=>'figure']);
-        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento prototipar','id'=>'arrow-image-prototipar', 'style'=>'display:none'));
-        $contenttext .= html_writer::start_tag('div', ['class'=>'card mt-3']);
-        if(file_exists(__DIR__.'/img/prototipar.svg')){
-            if($section == 1){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
-        }else if($section == 2){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
-        }else{
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
-        }
-            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'prototipar.svg','class' => '',  'alt' => 'momento prototipar','id'=>'module-image-1'));
-            $contenttext .= html_writer::end_tag('a');
-        }
-        $contenttext .= html_writer::start_tag('div', ['class'=>'card-body']);
-        if($section == 1){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
-        }else if($section == 2){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
-        }else{
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
-        }
-        $contenttext .= html_writer::tag('h5','Prototipar', ['class'=>'card-title_aulas_toribio']);
-        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse al momento prototipar','id'=>'', ));
-        $contenttext .= html_writer::end_tag('a');
-        $contenttext .= html_writer::end_tag('div');
-        $contenttext .= html_writer::end_tag('div');
-        $contenttext .= html_writer::end_tag('div');
+        // $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center','id'=> 'card-prototipar', 'role'=>'figure']);
+        // $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento prototipar','id'=>'arrow-image-prototipar', 'style'=>'display:none'));
+        // $contenttext .= html_writer::start_tag('div', ['class'=>'card mt-3']);
+        // if(file_exists(__DIR__.'/img/prototipar.svg')){
+        //     if($section == 1){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
+        // }else if($section == 2){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
+        // }else{
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
+        // }
+        //     $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'prototipar.svg','class' => '',  'alt' => 'momento prototipar','id'=>'module-image-1'));
+        //     $contenttext .= html_writer::end_tag('a');
+        // }
+        // $contenttext .= html_writer::start_tag('div', ['class'=>'card-body']);
+        // if($section == 1){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
+        // }else if($section == 2){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
+        // }else{
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',4)', 'role'=> 'button']);
+        // }
+        // $contenttext .= html_writer::tag('h5','Prototipar', ['class'=>'card-title_aulas_toribio']);
+        // $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse al momento prototipar','id'=>'', ));
+        // $contenttext .= html_writer::end_tag('a');
+        // $contenttext .= html_writer::end_tag('div');
+        // $contenttext .= html_writer::end_tag('div');
+        // $contenttext .= html_writer::end_tag('div');
         /**
          * Testear
          */
-        $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center', 'id'=> 'card-testear', 'role'=>'figure']);
-        $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento testear','id'=>'arrow-image-testear', 'style'=>'display:none'));
-        $contenttext .= html_writer::start_tag('div', ['class'=>'card mt-3']);
-        if(file_exists(__DIR__.'/img/testear.svg')){
-            if($section == 1){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
-        }else if($section == 2){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
-        }else{
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
-        }
-            $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'testear.svg','class' => '', 'alt' => 'momento testear','id'=>'module-image-1'));
-            $contenttext .= html_writer::end_tag('a');
-        }
-        $contenttext .= html_writer::start_tag('div', ['class'=>'card-body']);
-        if($section == 1){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
-        }else if($section == 2){
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
-        }else{
-            $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
-        }
-        $contenttext .= html_writer::tag('h5','Testear', ['class'=>'card-title_aulas_toribio']);
-        $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse al momento testear','id'=>'', ));
-        $contenttext .= html_writer::end_tag('a');
-        $contenttext .= html_writer::end_tag('div');
-        $contenttext .= html_writer::end_tag('div');
-        $contenttext .= html_writer::end_tag('div');
+        // $contenttext .= html_writer::start_tag('div', ['class'=>'d-flex flex-column align-items-center', 'id'=> 'card-testear', 'role'=>'figure']);
+        // $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'arrow-selector.svg','class' => '', 'alt' => 'indicacion de que se encuentra seleccionado el momento testear','id'=>'arrow-image-testear', 'style'=>'display:none'));
+        // $contenttext .= html_writer::start_tag('div', ['class'=>'card mt-3']);
+        // if(file_exists(__DIR__.'/img/testear.svg')){
+        //     if($section == 1){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
+        // }else if($section == 2){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
+        // }else{
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment card-moment-image', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
+        // }
+        //     $contenttext .= html_writer::empty_tag('img', array('src' => $link_img_base.'testear.svg','class' => '', 'alt' => 'momento testear','id'=>'module-image-1'));
+        //     $contenttext .= html_writer::end_tag('a');
+        // }
+        // $contenttext .= html_writer::start_tag('div', ['class'=>'card-body']);
+        // if($section == 1){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
+        // }else if($section == 2){
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
+        // }else{
+        //     $contenttext .= html_writer::start_tag('a',  ['class' => 'card-moment', 'onclick' => $onclick.'('.$section.',5)', 'role'=> 'button']);
+        // }
+        // $contenttext .= html_writer::tag('h5','Testear', ['class'=>'card-title_aulas_toribio']);
+        // $contenttext .=html_writer::empty_tag('img', array('src' => $link_img_base.'arrow.svg','alt'=>'flecha para dirigirse al momento testear','id'=>'', ));
+        // $contenttext .= html_writer::end_tag('a');
+        // $contenttext .= html_writer::end_tag('div');
+        // $contenttext .= html_writer::end_tag('div');
+        // $contenttext .= html_writer::end_tag('div');
 
         $contenttext .= html_writer::end_tag('div');
 

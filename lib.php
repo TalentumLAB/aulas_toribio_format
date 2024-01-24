@@ -463,7 +463,7 @@ class format_aulas_toribio extends format_topics
                     
 
                     
-                    for ($j = 1; $j <=  5; $j++) {
+                    for ($j = 1; $j <=  3; $j++) {
                         $editormomet++;
                         
                         /**

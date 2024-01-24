@@ -80,7 +80,7 @@ $string['editing'] = 'Los botones están deshabilitados mientras esté activo el
 $string['editsection'] = 'Editar tópico';
 $string['hidefromothers'] = 'Ocultar tópico';
 $string['no'] = 'No';
-$string['pluginname'] = 'Formato Aulas Toribio';
+$string['pluginname'] = 'Formato Aulas Toribío';
 $string['section0name'] = 'General';
 $string['sectionname'] = 'Tópico';
 $string['sectionposition'] = 'Posición de la sección cero';
@@ -137,4 +137,4 @@ $string['back_guides'] = 'Regresar a los cursos';
 /**
  * Momentos
  */
-$string['title-moments'] = 'Elige un momento del Design Thinking para continuar';
+$string['title-moments'] = 'Elige un actividad para continuar';

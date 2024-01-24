@@ -319,13 +319,13 @@ M.format_aulas_toribio.showmoment =  function(section,momento){
     let m = '';
     switch(momento){
         case 1: 
-            m='empatizar';
+            m='inicio';
             break;
         case 2: 
-            m='definir';
+            m='desarrollo';
             break;
         case 3: 
-            m='idear';
+            m='cierre';
             break;
         case 4: 
             m='prototipar';
@@ -382,15 +382,15 @@ M.format_aulas_toribio.showmoment =  function(section,momento){
         let nombre = activity.getAttribute('data-activityname'); 
         let nombreToShow = activity.getAttribute('data-activityname');
         if(momento == 1){
+            nombre = nombre.substring(1,7);
+            nombreToShow =  nombreToShow.slice(8);
+        }else if(momento == 2){
             nombre = nombre.substring(1,10);
             nombreToShow =  nombreToShow.slice(11);
-        }else if(momento == 2){
-            nombre = nombre.substring(1,8);
-            nombreToShow =  nombreToShow.slice(9);
         }
         else if(momento == 3){
-            nombre = nombre.substring(1,6);
-            nombreToShow =  nombreToShow.slice(7);
+            nombre = nombre.substring(1,7);
+            nombreToShow =  nombreToShow.slice(8);
         }
         else if(momento == 4){
             nombre = nombre.substring(1,11);
@@ -428,15 +428,15 @@ M.format_aulas_toribio.changenames = function(){
     var activitiesTitle = document.querySelectorAll("#section-1 .img-text li .activity-item .instancename");
     
     activitiesTitle.forEach(function(title) {
-        if(title.innerHTML.substring(1,10).toLowerCase()=='empatizar'){
+        if(title.innerHTML.substring(1,7).toLowerCase()=='inicio'){
+            const tToShow = title.innerHTML.slice(8);
+            title.innerHTML = tToShow;
+        }else if(title.innerHTML.substring(1,10).toLowerCase()== 'desarrollo'){
             const tToShow = title.innerHTML.slice(11);
             title.innerHTML = tToShow;
-        }else if(title.innerHTML.substring(1,8).toLowerCase()== 'definir'){
-            const tToShow = title.innerHTML.slice(9);
-            title.innerHTML = tToShow;
         }
-        else if(title.innerHTML.substring(1,6).toLowerCase()== 'idear'){
-            const tToShow = title.innerHTML.slice(7);
+        else if(title.innerHTML.substring(1,7).toLowerCase()== 'cierre'){
+            const tToShow = title.innerHTML.slice(8);
             title.innerHTML = tToShow;
         }
         else if(title.innerHTML.substring(1,11).toLowerCase()== 'prototipar'){

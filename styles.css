@@ -909,39 +909,45 @@ Cards moments
     text-align: center !important;
 }
 
-/*Empatizar*/
-#card-empatizar[card="active"].card-momento-ative-empatizar .card{
+/*Inicio*/
+#card-inicio[card="active"].card-momento-ative-inicio .card{
   padding: 0.3rem;
-  background: #eab130;
-  box-shadow: 0px 2px 14px 2px #eab130;
+  background: #119539;
+  box-shadow: 0px 2px 14px 2px #119539;
+  max-width: 330px;
+  overflow: hidden;
 }
-#card-empatizar[card="active"].card-momento-ative-empatizar .card .card-body{
+#card-inicio[card="active"].card-momento-ative-inicio .card .card-body{
   border-bottom-left-radius: 10px;
     background: #fff;
     border-bottom-right-radius: 10px;
     padding: 0.8rem;
 }
 
-/*definir*/
-#card-definir[card="active"].card-momento-ative-definir .card{
+/*desarrollo*/
+#card-desarrollo[card="active"].card-momento-ative-desarrollo .card{
   padding: 0.3rem;
-  background: #3c9747;
-  box-shadow: 0px 2px 14px 2px #3c9747;
+  background: #014f92;
+  box-shadow: 0px 2px 14px 2px #014f92;
+  max-width: 330px;
+  overflow: hidden;
 }
-#card-definir[card="active"].card-momento-ative-definir .card .card-body{
+#card-desarrollo[card="active"].card-momento-ative-desarrollo .card .card-body{
   border-bottom-left-radius: 10px;
   background: #fff;
   border-bottom-right-radius: 10px;
   padding: 0.8rem;
 }
 
-/*idear*/
-#card-idear[card="active"].card-momento-ative-idear .card{
+/*cierre*/
+#card-cierre[card="active"].card-momento-ative-cierre .card{
   padding: 0.3rem;
-  background: #17337a;
-  box-shadow: 0px 2px 14px 2px #17337a;
+  background: #c9141e;
+  box-shadow: 0px 2px 14px 2px #c9141e;
+  max-width: 330px;
+  overflow: hidden;
 }
-#card-idear[card="active"].card-momento-ative-idear .card .card-body{
+#card-cierre[card="active"].card-momento-ative-cierre .card .card-body{
   border-bottom-left-radius: 10px;
     background: #fff;
     border-bottom-right-radius: 10px;
