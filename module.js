@@ -288,7 +288,7 @@ M.format_aulas_toribio.h5p = function () {
 var cahngenames = false;
 var arr;
 M.format_aulas_toribio.showmoment =  function(section,momento){
-
+    
     /**
      * Selecciona como activo el momento actual
      */
@@ -375,6 +375,7 @@ M.format_aulas_toribio.showmoment =  function(section,momento){
      * mostrar las actividades del momento
      */
     var activities = document.querySelectorAll('#section-'+section+' .img-text li .activity-item');
+    
     /**
      * Recorre todas las actividades y las agrega al arreglo
      */
@@ -385,8 +386,8 @@ M.format_aulas_toribio.showmoment =  function(section,momento){
             nombre = nombre.substring(1,7);
             nombreToShow =  nombreToShow.slice(8);
         }else if(momento == 2){
-            nombre = nombre.substring(1,10);
-            nombreToShow =  nombreToShow.slice(11);
+            nombre = nombre.substring(1,11);
+            nombreToShow =  nombreToShow.slice(12);
         }
         else if(momento == 3){
             nombre = nombre.substring(1,7);
@@ -431,8 +432,8 @@ M.format_aulas_toribio.changenames = function(){
         if(title.innerHTML.substring(1,7).toLowerCase()=='inicio'){
             const tToShow = title.innerHTML.slice(8);
             title.innerHTML = tToShow;
-        }else if(title.innerHTML.substring(1,10).toLowerCase()== 'desarrollo'){
-            const tToShow = title.innerHTML.slice(11);
+        }else if(title.innerHTML.substring(1,11).toLowerCase()== 'desarrollo'){
+            const tToShow = title.innerHTML.slice(12);
             title.innerHTML = tToShow;
         }
         else if(title.innerHTML.substring(1,7).toLowerCase()== 'cierre'){
