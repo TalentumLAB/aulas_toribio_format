@@ -41,6 +41,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background-color: #495057;
 }
+/*------------------------*/
  .dropdown-menu.show{
   z-index: 99999;
  }
@@ -882,6 +883,14 @@ Cards moments
   font-weight: 500;
   margin: 2rem 0;
 }
+.card-container{
+  overflow: hidden;
+  max-width: 250px;
+}
+.card-container .card-image{
+  width: 100%;
+  object-fit: cover;
+}
 .card-moment-content{
   justify-content: space-evenly;
 }
@@ -890,8 +899,10 @@ Cards moments
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .card-moment .card-title_aulas_toribio{
  padding: 0;
+ max-width: 80%;
 }
 .card-moment:hover{
   cursor: pointer;
