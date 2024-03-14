@@ -925,7 +925,7 @@ Cards moments
   padding: 0.3rem;
   background: #119539;
   box-shadow: 0px 2px 14px 2px #119539;
-  max-width: 330px;
+  max-width: 250px;
   overflow: hidden;
 }
 #card-inicio[card="active"].card-momento-ative-inicio .card .card-body{
@@ -940,7 +940,7 @@ Cards moments
   padding: 0.3rem;
   background: #014f92;
   box-shadow: 0px 2px 14px 2px #014f92;
-  max-width: 330px;
+  max-width: 250px;
   overflow: hidden;
 }
 #card-desarrollo[card="active"].card-momento-ative-desarrollo .card .card-body{
@@ -955,7 +955,7 @@ Cards moments
   padding: 0.3rem;
   background: #c9141e;
   box-shadow: 0px 2px 14px 2px #c9141e;
-  max-width: 330px;
+  max-width: 250px;
   overflow: hidden;
 }
 #card-cierre[card="active"].card-momento-ative-cierre .card .card-body{

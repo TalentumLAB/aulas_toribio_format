@@ -708,12 +708,15 @@ class format_aulas_toribio extends format_topics
 
         // ... store or update $entry
         $filesoptionseditor =array( 
-            'trusttext' => true,
-            'subdirs' => false,
-            'maxfiles' => 0,
-            'maxbytes' => 0,
-            'context' => $context,
-            'enable_filemanagement' => false
+            'trusttext' => 0,
+            'subdirs' => 0,
+            'maxfiles' => 2,
+            'maxbytes' => 2000000,
+            'context' => $context->id,
+            'return_types' => 15,
+            'enable_filemanagement' => true,
+            'noclean' => 1,
+            'changeformat' => 0,
         );
                     
         $entryeditor = file_save_draft_area_files($draftitemideditor, $context->id, 'format_aulas_toribio', 'editortabs',1, $filesoptionseditor);

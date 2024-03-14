@@ -211,7 +211,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
              */
             $idCourse = (int)$course->id;
             $nameeditor = 'editor_tabs_home';
-            $valueFilePrincipal = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
+            $valueFilePrincipal = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse and format='aulas_toribio'" );
 
             /**
              * Verifico si viene con algun enlace
@@ -360,7 +360,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         * Video principal
         * 
         */
-                    
+        $link_img_base_video='../course/format/aulas_toribio/img/'; 
         $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6", 'style'=>"margin-bottom: 2rem;align-self: center;", 'role' => 'presentation']);
         if(empty($course->{'Modulevideohome'}) || $course->{'Modulevideohome'} == ' '){
             $modulevideohtml .= html_writer::start_tag('div',['class' => 'video-tabs']);
@@ -961,7 +961,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         try {
             $idCourse = (int)$course->id;
             $nameeditor = 'editor_tabs'.$section;
-            $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
+            $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse and format='aulas_toribio'");
             $editorcontent = '';
 
             /**
@@ -1310,7 +1310,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
                 try {
                     $idCourse = (int)$course->id;
                     $nameeditor = 'editor_tabs_moment'.$i;
-                    $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
+                    $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse and format='aulas_toribio'");
                     $editorcontent = '';
                                 
                     $contenttext .= html_writer::start_tag('div',['class' => "col-sm-12 justify-text", 'style'=>"margin-bottom: 2rem;"]);
@@ -1333,7 +1333,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
                 try {
                     $idCourse = (int)$course->id;
                     $nameeditor = 'editor_tabs_moment'.$i;
-                    $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
+                    $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse and format='aulas_toribio'");
                     $editorcontent = '';
                                 
                     $contenttext .= html_writer::start_tag('div',['class' => "col-sm-12 justify-text", 'style'=>"margin-bottom: 2rem;", 'aria-labelledby'=>'descripción del momento seleccionado']);
@@ -1355,7 +1355,7 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
                 try {
                     $idCourse = (int)$course->id;
                     $nameeditor = 'editor_tabs_moment'.$i;
-                    $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
+                    $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse and format='aulas_toribio'");
                     $editorcontent = '';
                                 
                     $contenttext .= html_writer::start_tag('div',['class' => "col-sm-12 justify-text", 'style'=>"margin-bottom: 2rem;", 'aria-labelledby'=>'descripción del momento seleccionado']);
