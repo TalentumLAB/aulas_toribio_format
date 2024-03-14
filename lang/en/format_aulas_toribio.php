@@ -117,6 +117,7 @@ $string['title_tabs']  = 'Tabs Settings';
 $string['tabsTitle']  = 'Guide Title - {$a}';
 $string['tabsTitle_help']  = 'Title of the guide - {$a} to contextualize the student <br> Example: Module 1 or Week 1 or Cut 1';
 $string['tabsimage']  = 'Guide Banner Image Link - {$a}';
+$string['tabsimageguide']  = 'Guide Image - {$a}';
 $string['moduleimage_help']  = 'Link to the guide banner image that you want to appear in the module container';
 $string['tabseditor']  = 'Guide Description - {$a}';
 $string['tabseditor_help']  = 'Description of the guide - {$a} that you want to appear in the {$a} module';

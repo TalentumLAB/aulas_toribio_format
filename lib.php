@@ -116,6 +116,7 @@ class format_aulas_toribio extends format_topics
                 /**
                  * Objetivo principal
                  */
+                 $context_editor = context_course::instance($this->courseid);
                  $courseformatoptions['editor_tabs_home_editor'] = array(
                     'label' => get_string('tabseditor_home', 'format_aulas_toribio',$i),
                     'help' => 'tabseditor_home',
@@ -124,23 +125,29 @@ class format_aulas_toribio extends format_topics
                     'element_attributes' => array(
                         null,
                         array(
-                            'trusttext' => true,
-                            'subdirs' => false,
-                            'maxfiles' => 0,
-                            'maxbytes' => 0,
-                            'context' => $context,
-                            'enable_filemanagement' => false
+                            'trusttext' => 0,
+                            'subdirs' => 0,
+                            'maxfiles' => 2,
+                            'maxbytes' => 2000000,
+                            'context' => $context_editor,
+                            'return_types' => 15,
+                            'enable_filemanagement' => true,
+                            'noclean' => 1,
+                            'changeformat' => 0,
                         ),
                         
                     ),
                     );
                     $optionsfile =array(
-                        'trusttext' => true,
-                        'subdirs' => false,
-                        'maxfiles' => 0,
-                        'maxbytes' => 0,
-                        'context' => $context,
-                        'enable_filemanagement' => false
+                        'trusttext' => 0,
+                        'subdirs' => 0,
+                        'maxfiles' => 2,
+                        'maxbytes' => 2000000,
+                        'context' => $context_editor,
+                        'return_types' => 15,
+                        'enable_filemanagement' => true,
+                        'noclean' => 1,
+                        'changeformat' => 0,
                     );
                     if($this->courseid != null){
                     $context = context_course::instance($this->courseid);
@@ -292,8 +299,8 @@ class format_aulas_toribio extends format_topics
 
                 /** file picker para la imagen de la guia */
                 $courseformatoptions['filepicker_tabs'.$i.'_filemanager'] = array(
-                    'label' => get_string('tabsimage', 'format_aulas_toribio',$i),
-                    'help' => 'tabsimage',
+                    'label' => get_string('tabsimageguide', 'format_aulas_toribio',$i),
+                    'help' => 'tabsimageguide',
                     'help_component' => 'format_aulas_toribio',
                     'element_type' => 'filemanager',
                     'element_attributes' => array(
@@ -419,23 +426,31 @@ class format_aulas_toribio extends format_topics
                     'element_attributes' => array(
                         null,
                         array(
-                            'trusttext' => true,
-                            'subdirs' => false,
-                            'maxfiles' => 0,
-                            'maxbytes' => 0,
+                            'trusttext' => 0,
+                            'subdirs' => 0,
+                            'maxfiles' => 2,
+                            'maxbytes' => 2000000,
                             'context' => $context,
-                            'enable_filemanagement' => false
+                            'return_types' => 15,
+                            'enable_filemanagement' => true,
+                            'removeorphaneddrafts' => false,
+                            'noclean' => 0,
+                            'changeformat' => 0,
                         ),
                         
                     ),
                     );
                     $optionsfile =array(
-                        'trusttext' => true,
-                        'subdirs' => false,
-                        'maxfiles' => 0,
-                        'maxbytes' => 0,
+                        'trusttext' => 0,
+                        'subdirs' => 0,
+                        'maxfiles' => 2,
+                        'maxbytes' => 2000000,
                         'context' => $context,
-                        'enable_filemanagement' => false
+                        'return_types' => 15,
+                        'enable_filemanagement' => true,
+                        'removeorphaneddrafts' => false,
+                        'noclean' => 0,
+                        'changeformat' => 0,
                     );
                     if($this->courseid != null){
                     $context = context_course::instance($this->courseid);
@@ -983,7 +998,7 @@ function format_aulas_toribio_pluginfile($course, $cm, $context, $filearea, $arg
     }
  
     // Make sure the filearea is one of those used by the plugin.
-    if ($filearea !== 'images' && $filearea !== 'editortabs' && $filearea !== 'editormodules') {
+    if ($filearea !== 'images' && $filearea !== 'editortabs' && $filearea !== 'editormodules' && $filearea !== 'audios') {
         print_error('filearea');
     }
  

@@ -122,6 +122,7 @@ $string['title_tabs']  = 'Configuración de las guías';
 $string['tabsTitle']  = 'Título de la guía - {$a}';
 $string['tabsTitle_help']  = 'Título de la guía - {$a} para contextualizar al estudiante <br> Ejemplo: Módulo 1 ó Semana 1 ó Corte 1';
 $string['tabsimage']  = 'Enlace de la imágen del banner de la guía - {$a}';
+$string['tabsimageguide']  = 'Enlace de la imágen de la guía - {$a}';
 $string['moduleimage_help']  = 'Enlace de la imágen del banner de la guía que quiere que aparezca en el contenedor del módulo';
 $string['tabseditor']  = 'Descripción de la guía - {$a}';
 $string['tabseditor_help']  = 'Descripción de la guía - {$a} que quiere que aparezca en el módulo {$a}';

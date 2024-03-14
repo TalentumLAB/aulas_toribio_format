@@ -205,20 +205,155 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         */
         $cardscontainerhtml .= html_writer::start_tag('div',['class' => "row"]);
         try {
+            
+            /**
+             * obtengo el valor del editor 
+             */
             $idCourse = (int)$course->id;
             $nameeditor = 'editor_tabs_home';
-            $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
+            $valueFilePrincipal = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
+
+            /**
+             * Verifico si viene con algun enlace
+             */
+            preg_match_all('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $valueFilePrincipal->value, $matchPrincipal);
+
+            /**
+             * obtengo el nombre del archivo subido (audio)
+             */
+            $namePrincipal = explode("/", $matchPrincipal[0][0]);
+           
+            $id_to_save = $course->id.'1';
+            
+            foreach ($namePrincipal as $n){
+                $namePrincipal = $n;
+            }
+            // /**
+            //  * limpio el texto
+            //  * 1. quito espacios
+            //  * 2. quito tildes
+            //  * 3. quito caracteres especiales
+            //  */
+            // $namePrincipal =str_replace("%20", "",$namePrincipal);
+            // $namePrincipal =str_replace("%CC%81", "",$namePrincipal);
+            // $namePrincipal = preg_replace('([^A-Za-z0-9])', '', $namePrincipal);
+           
+            
+
+            if($matchPrincipal[0][0] != null){
+            
+            /**
+             * Elimino el audio del texto
+             */
+            
+            $contentPrincipal = strip_tags($valueFilePrincipal->value, '<p><a><span><div><strong>');
+            $reg_exUrl = "/.[http|https|ftp|ftps]*\:\/\/.[^$|\s]*/";
+            $contentPrincipal = preg_replace($reg_exUrl, "", $contentPrincipal);
+
+            /**
+             * llamo a la funcion de archivos de moodle
+             */
+            $fs = get_file_storage();
+            
+            $existfile =  $fs->file_exists(
+                $context->id, 
+                'format_aulas_toribio', 
+                'audios', 
+                $id_to_save,
+                '/',           
+                $namePrincipal, 
+            );
+            /**
+             * Verifico si el archivo ya existe para actualizarlo por uno nuevo o crearlo
+             */
+            if(!$existfile){
+                /**
+                 * Elimino el archivo anterior para poder actualizarlo
+                 */
+                $fs->delete_area_files($context->id, 'format_aulas_toribio', 'audios', $id_to_save);
+                $id = $DB->get_record_sql("SELECT id FROM mdl_files where filearea='draft' and filename='$namePrincipal'");
+                $fileinfo = [
+                    'contextid' => $context->id,   // ID of the context.
+                    'component' => 'format_aulas_toribio', // Your component name.
+                    'filearea'  => 'audios',       // Usually = table name.
+                    'itemid'    => $id_to_save,              // Usually = ID of row in table.
+                    'filepath'  => '/',            // Any path beginning and ending in /.
+                    'filename'  => $namePrincipal,   // Any filename.
+                ];
+                $fs = get_file_storage();
+
+                
+    
+                //  Creo el nuevo archivo.
+                $drafturl = $matchPrincipal[0][0];
+                $fs->create_file_from_storedfile($fileinfo, $id->id);
+                $audiobienvenida = $fs->get_area_files($context->id, 'format_aulas_toribio', 'audios', $id_to_save);
+                if ($audiobienvenida) {  
+                    foreach ($audiobienvenida as $audiobienvenida1) {
+                        $audio = moodle_url::make_pluginfile_url(
+                            $audiobienvenida1->get_contextid(),
+                            $audiobienvenida1->get_component(),
+                            $audiobienvenida1->get_filearea(),
+                            $id_to_save,
+                            $audiobienvenida1->get_filepath(),
+                            $audiobienvenida1->get_filename(),
+                            false
+                        );
+                    }
+                }
+            }
+            else{
+                /**
+                 * Si el archivo ya existe solo genero la url publica para que todos puedan verla
+                 */
+                $audiobienvenida = $fs->get_area_files($context->id, 'format_aulas_toribio', 'audios', $id_to_save);
+                if ($audiobienvenida) {  
+                    foreach ($audiobienvenida as $audiobienvenida1) {
+                        $audio = moodle_url::make_pluginfile_url(
+                            $audiobienvenida1->get_contextid(),
+                            $audiobienvenida1->get_component(),
+                            $audiobienvenida1->get_filearea(),
+                            $id_to_save,
+                            $audiobienvenida1->get_filepath(),
+                            $audiobienvenida1->get_filename(),
+                            false
+                        );
+                    }
+                }
+            }
+           
+         
             $editorcontent = '';
             if(empty($course->{'Modulevideohome'}) || $course->{'Modulevideohome'} == ' '){          
-            $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-12 justify-text", 'style'=>"margin-bottom: 2rem;", 'aria-labelledby' => 'descripción del curso']);
+            $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción del curso']);
             }else{
-            $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;", 'aria-labelledby' => 'descripción del curso']);
+            $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción del curso']);
             }
-            $cardscontainerhtml .= $valueFile->value;
+            /**
+             * muestro el contenido y luego el audio
+             */
+            $cardscontainerhtml .= $contentPrincipal;
+            $cardscontainerhtml .= '
+            <audio controls="true" type="audio/mp3" style="margin-top:2rem">
+               <source src="'.$audio.'" /> 
+            </audio>
+            ';
             $cardscontainerhtml .= html_writer::end_tag('div');
+        }else{
+            if(empty($course->{'Modulevideohome'}) || $course->{'Modulevideohome'} == ' '){
+                $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción del curso']);
+            }else{
+                $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción del curso']);
+            }
+            /**
+             * muestro el contenido y luego el audio
+             */
+            $cardscontainerhtml .= $valueFilePrincipal->value;
+            $cardscontainerhtml .= html_writer::end_tag('div');
+        }
                                 
         } catch (Exception $th) {
-            echo ' error en el editor de bienvenidos', $th->getMessage();
+            echo ' error en el editor de bienvenidos ', $th->getMessage();
         }
         /**
         * 
@@ -226,9 +361,10 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         * 
         */
                     
-        $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6", 'style'=>"margin-bottom: 2rem;", 'role' => 'presentation']);
+        $cardscontainerhtml .= html_writer::start_tag('div',['class' => "col-sm-6", 'style'=>"margin-bottom: 2rem;align-self: center;", 'role' => 'presentation']);
         if(empty($course->{'Modulevideohome'}) || $course->{'Modulevideohome'} == ' '){
-            $modulevideohtml .= html_writer::start_tag('div', ['style'=>'display:none']);
+            $modulevideohtml .= html_writer::start_tag('div',['class' => 'video-tabs']);
+            $modulevideohtml .= html_writer::empty_tag('video', ['src'=>$link_img_base_video.'videos/'.$course->fullname.'/b.mp4', 'controls'=>'controls','controlslist'=>'nodownload','style'=>'border-radius: 15px; max-width: 100%; height: auto;']);
             $modulevideohtml .= html_writer::end_tag('div');
         }
         else{
@@ -827,17 +963,133 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
             $nameeditor = 'editor_tabs'.$section;
             $valueFile = $DB->get_record_sql("SELECT value FROM mdl_course_format_options  where name='$nameeditor' and courseid=$idCourse");
             $editorcontent = '';
+
+            /**
+             * Verifico si viene con algun enlace
+             */
+            preg_match_all('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $valueFile->value, $match);
+
+            /**
+             * obtengo el nombre del archivo subido (audio)
+             */
+            $nameSection = explode("/", $match[0][0]);
+           
+            $id_to_save_section = $course->id.$section.$section+1;
+            
+            foreach ($nameSection as $n){
+                $nameSection = $n;
+            }
+
+            if($match[0][0] != null){
+
+            /**
+             * Ellimino el audio del texto
+             */
+            $content = strip_tags($valueFile->value, '<p><a><span><div><strong>');
+            $reg_exUrl = "/.[http|https|ftp|ftps]*\:\/\/.[^$|\s]*/";
+            $content = preg_replace($reg_exUrl, "", $content);
+
+            /**
+             * llamo a la funcion de archivos de moodle
+             */
+            $fs = get_file_storage();
+            
+            $existfile =  $fs->file_exists(
+                $context->id, 
+                'format_aulas_toribio', 
+                'audios', 
+                $id_to_save_section,
+                '/',           
+                $nameSection, 
+            );
+           
+            /**
+             * Verifico si el archivo ya existe para actualizarlo por uno nuevo o crearlo
+             */
+            if(!$existfile){
+                /**
+                 * Elimino el archivo anterior para poder actualizarlo
+                 */
+                $fs->delete_area_files($context->id, 'format_aulas_toribio', 'audios', $id_to_save_section);
+                $id = $DB->get_record_sql("SELECT id FROM mdl_files where filearea='draft' and filename='$nameSection'");
+                $fileinfo = [
+                    'contextid' => $context->id,   // ID of the context.
+                    'component' => 'format_aulas_toribio', // Your component name.
+                    'filearea'  => 'audios',       // Usually = table name.
+                    'itemid'    => $id_to_save_section,              // Usually = ID of row in table.
+                    'filepath'  => '/',            // Any path beginning and ending in /.
+                    'filename'  => $nameSection,   // Any filename.
+                ];
+                $fs = get_file_storage();
+    
+                //  Creo el nuevo archivo.
+                $drafturl = $match[0][0];
+                $fs->create_file_from_storedfile($fileinfo, $id->id);
+                $audiobienvenida = $fs->get_area_files($context->id, 'format_aulas_toribio', 'audios', $id_to_save_section);
+                if ($audiobienvenida) {  
+                    foreach ($audiobienvenida as $audiobienvenida1) {
+                        $audio = moodle_url::make_pluginfile_url(
+                            $audiobienvenida1->get_contextid(),
+                            $audiobienvenida1->get_component(),
+                            $audiobienvenida1->get_filearea(),
+                            $id_to_save_section,
+                            $audiobienvenida1->get_filepath(),
+                            $audiobienvenida1->get_filename(),
+                            false
+                        );
+                    }
+                }
+            }
+            else{
+                /**
+                 * Si el archivo ya existe solo genero la url publica para que todos puedan verla
+                 */
+                $audiobienvenida = $fs->get_area_files($context->id, 'format_aulas_toribio', 'audios', $id_to_save_section);
+                if ($audiobienvenida) {  
+                    foreach ($audiobienvenida as $audiobienvenida1) {
+                        $audio = moodle_url::make_pluginfile_url(
+                            $audiobienvenida1->get_contextid(),
+                            $audiobienvenida1->get_component(),
+                            $audiobienvenida1->get_filearea(),
+                            $id_to_save_section,
+                            $audiobienvenida1->get_filepath(),
+                            $audiobienvenida1->get_filename(),
+                            false
+                        );
+                    }
+                }
+            }
                         
             if(empty($course->{'tabsVideo'.$section}) || $course->{'tabsVideo'.$section} == ' '){
-                $contenttext .= html_writer::start_tag('div',['class' => "col-sm-12 justify-text", 'style'=>"margin-bottom: 2rem;", 'aria-labelledby' => 'descripción de la guía'.$name]);
+                $contenttext .= html_writer::start_tag('div',['class' => "col-sm-12 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción de la guía'.$name]);
             }else{
-                $contenttext .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;", 'aria-labelledby' => 'descripción de la guía'.$name]);
+                $contenttext .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción de la guía'.$name]);
             }
+            /**
+             * muestro el contenido y luego el audio
+             */
+            $contenttext .= $content;
+            $contenttext .= '
+            <audio controls="true" type="audio/mp3" style="margin-top:2rem">
+               <source src="'.$audio.'" /> 
+            </audio>
+            ';
+            $contenttext .= html_writer::end_tag('div');
+        }else{
+            if(empty($course->{'tabsVideo'.$section}) || $course->{'tabsVideo'.$section} == ' '){
+                $contenttext .= html_writer::start_tag('div',['class' => "col-sm-12 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción de la guía'.$name]);
+            }else{
+                $contenttext .= html_writer::start_tag('div',['class' => "col-sm-6 justify-text", 'style'=>"margin-bottom: 2rem;text-align: justify;", 'aria-labelledby' => 'descripción de la guía'.$name]);
+            }
+            /**
+             * muestro el contenido y luego el audio
+             */
             $contenttext .= $valueFile->value;
             $contenttext .= html_writer::end_tag('div');
+        }
                                 
         } catch (Exception $th) {
-            echo ' error en el editor de bienvenidos', $th->getMessage();
+            echo ' error en el editor de guias', $th->getMessage();
         }
         /**
         * 
@@ -872,6 +1124,9 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         $contenttext .= html_writer::start_tag('div', ['class'=>'w-100 text-center title-momentos']);
         $contenttext .= html_writer::tag('h4',get_string('title-moments', 'format_aulas_toribio'));
         // $contenttext .= html_writer::tag('h4','Elige un momento del Design Thinking para continuar');
+        $contenttext .= '<audio controls="true">
+        <source src="'.$link_img_base.'audios/momentos-design.mp3">
+        </audio>';
         $contenttext .= html_writer::end_tag('div');
         /**
          * Imagenes de los momentos
