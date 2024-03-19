@@ -25,7 +25,7 @@
 
 // defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2024220106; // Plugin released on 20th May 2023.
+$plugin->version = 2024220107; // Plugin released on 20th May 2023.
 $plugin->requires = 2018120300;  //moodle 3.6 
 $plugin->component = 'format_aulas_toribio';
 $plugin->maturity = MATURITY_STABLE;

@@ -1119,6 +1119,16 @@ class format_aulas_toribio_renderer extends format_topics_renderer{
         $contenttext .= html_writer::end_tag('div');
         
         /**
+         * Imagen y audio de seccion nahuak
+         */
+        $contenttext .= html_writer::start_tag('div', ['class'=>'w-100 text-center title-momentos']);
+        $contenttext .= html_writer::empty_tag('img', ['src'=>$link_img_base.'/nahuak.jpg','class'=>'w-100 mb-4']);
+        $contenttext .= '<audio controls="true">
+        <source src="'.$link_img_base.'audios/momentos-design.mp3">
+        </audio>';
+        $contenttext .= html_writer::end_tag('div');
+
+        /**
          * Titulo de los momentos
          */
         $contenttext .= html_writer::start_tag('div', ['class'=>'w-100 text-center title-momentos']);
